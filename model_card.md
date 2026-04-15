@@ -98,10 +98,5 @@ Ideas for how you would improve the model next.
 
 A few sentences about your experience.  
 
-Prompts:  
-
-- What you learned about recommender systems  
-- Something unexpected or interesting you discovered  
-- How this changed the way you think about music recommendation apps  
 
 Building TuneFinder taught me how recommendation systems transform raw data into personalized suggestions through simple math. I was surprised by how reasonable the results felt even with such a basic scoring system, it shows that a few well-chosen rules can go a long way. The biggest insight was discovering how small weight decisions, like making genre worth 2x more than mood, can unintentionally limit what users discover. This made me think about how real platforms like Spotify might struggle with the same problem at a much larger scale, and why human oversight in AI systems still matters even when the algorithm seems to be working correctly.
