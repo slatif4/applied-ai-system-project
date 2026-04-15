@@ -129,3 +129,5 @@ Building TuneFinder taught me how recommendation systems transform raw data into
 ### Terminal Output — 3 User Profiles
 ![Profile Recommendations](screenshots/profiles_output.png)
 
+### Visual Table Output — Tabulate Formatting
+![Table Output](screenshots/table_output.png)

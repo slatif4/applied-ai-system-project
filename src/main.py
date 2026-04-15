@@ -3,18 +3,24 @@ Command line runner for the Music Recommender Simulation.
 """
 
 from src.recommender import load_songs, recommend_songs
+from tabulate import tabulate
 
 
 def run_profile(songs, profile_name, user_prefs):
-    print(f"\n{'='*50}")
+    print(f"\n{'='*60}")
     print(f"Profile: {profile_name}")
     print(f"Prefs: {user_prefs}")
-    print(f"{'='*50}")
+    print(f"{'='*60}")
+    
     recommendations = recommend_songs(user_prefs, songs, k=5)
-    for rec in recommendations:
+    
+    table_data = []
+    for rank, rec in enumerate(recommendations, start=1):
         song, score, explanation = rec
-        print(f"{song['title']} - Score: {score:.2f}")
-        print(f"  Because: {explanation}")
+        table_data.append([rank, song['title'], song['artist'], score, explanation])
+    
+    headers = ["Rank", "Title", "Artist", "Score", "Reasons"]
+    print(tabulate(table_data, headers=headers, tablefmt="fancy_grid"))
 
 
 def main() -> None:
