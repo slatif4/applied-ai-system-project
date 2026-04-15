@@ -2,20 +2,17 @@
 
 ## 1. Model Name  
 
-Give your model a short, descriptive name.  
-Example: **VibeFinder 1.0**  
+**TuneFinder 1.0**
 
 ---
 
 ## 2. Intended Use  
 
 Describe what your recommender is designed to do and who it is for. 
+ 
 
-Prompts:  
+This system suggests up to 5 songs from a small catalog based on a user's preferred genre, mood, and energy level. It is designed for classroom exploration to demonstrate how content-based recommendation systems work. It is not intended for real-world use or production music platforms.
 
-- What kind of recommendations does it generate  
-- What assumptions does it make about the user  
-- Is this for real users or classroom exploration  
 
 ---
 
@@ -23,14 +20,15 @@ Prompts:
 
 Explain your scoring approach in simple language.  
 
-Prompts:  
 
-- What features of each song are used (genre, energy, mood, etc.)  
-- What user preferences are considered  
-- How does the model turn those into a score  
-- What changes did you make from the starter logic  
+**TuneFinder 1.0** compares each song in the catalog to a user's taste profile using a simple point-based scoring system. For every song, it checks three things:
 
-Avoid code here. Pretend you are explaining the idea to a friend who does not program.
+- If the song's genre matches the user's favorite genre, it earns 2 points
+- If the song's mood matches the user's favorite mood, it earns 1 point
+- The song earns up to 1 additional point based on how close its energy level is to the user's target energy
+
+Once every song has a score, the system sorts them from highest to lowest and returns the top results. Each recommendation includes an explanation of why it was suggested, such as "genre match (+2.0), energy similarity (0.95)."
+
 
 ---
 
@@ -38,12 +36,12 @@ Avoid code here. Pretend you are explaining the idea to a friend who does not pr
 
 Describe the dataset the model uses.  
 
-Prompts:  
 
-- How many songs are in the catalog  
-- What genres or moods are represented  
-- Did you add or remove data  
-- Are there parts of musical taste missing in the dataset  
+- The catalog contains 20 songs stored in `data/songs.csv`
+- Genres represented: pop, lofi, rock, jazz, ambient, synthwave, indie pop, electronic
+- Moods represented: happy, chill, intense, relaxed, moody, focused
+- 10 songs were in the original starter file; 10 additional songs were added to improve diversity
+- The dataset reflects a bias toward Western popular music styles and does not include classical, country, hip-hop, or world music
 
 ---
 
@@ -51,24 +49,25 @@ Prompts:
 
 Where does your system seem to work well  
 
-Prompts:  
 
-- User types for which it gives reasonable results  
-- Any patterns you think your scoring captures correctly  
-- Cases where the recommendations matched your intuition  
+- Works well for users with clear, common preferences like "chill lofi" or "high-energy pop"
+- Recommendations are fully explainable, every suggestion includes a reason
+- Simple and transparent scoring makes it easy to understand and debug
+- Fast performance even without any machine learning
 
 ---
 
 ## 6. Limitations and Bias 
 
 Where the system struggles or behaves unfairly. 
+ 
 
-Prompts:  
-
-- Features it does not consider  
-- Genres or moods that are underrepresented  
-- Cases where the system overfits to one preference  
-- Ways the scoring might unintentionally favor some users  
+- Genre match is worth twice as much as mood match, which can create a "filter bubble" where users only see one genre
+- The catalog is very small (20 songs), so niche genres like ambient or electronic have very few options
+- Energy similarity can reward songs that are close in energy even if they feel completely different
+- The system does not consider tempo, valence, danceability, or acousticness in scoring
+- Users with conflicting preferences (e.g., high energy but chill mood) may get unexpected results
+- The dataset does not represent many global music styles, making it biased toward certain listener types
 
 ---
 
@@ -76,14 +75,8 @@ Prompts:
 
 How you checked whether the recommender behaved as expected. 
 
-Prompts:  
 
-- Which user profiles you tested  
-- What you looked for in the recommendations  
-- What surprised you  
-- Any simple tests or comparisons you ran  
-
-No need for numeric metrics unless you created some.
+A weight shift experiment was also considered: doubling the energy weight and halving the genre weight would likely surface more cross-genre results based on vibe rather than category.
 
 ---
 
@@ -91,12 +84,13 @@ No need for numeric metrics unless you created some.
 
 Ideas for how you would improve the model next.  
 
-Prompts:  
 
-- Additional features or preferences  
-- Better ways to explain recommendations  
-- Improving diversity among the top results  
-- Handling more complex user tastes  
+- Add support for more features in scoring, such as tempo range preferences and valence
+- Expand the catalog to hundreds of songs across more genres and cultures
+- Implement collaborative filtering to learn from multiple users' listening history
+- Add diversity balancing so the top results include songs from different genres
+- Build a Streamlit UI so users can interactively adjust their taste profile and see results change in real time
+
 
 ---
 
@@ -109,3 +103,5 @@ Prompts:
 - What you learned about recommender systems  
 - Something unexpected or interesting you discovered  
 - How this changed the way you think about music recommendation apps  
+
+Building TuneFinder taught me how recommendation systems transform raw data into personalized suggestions through simple math. I was surprised by how reasonable the results felt even with such a basic scoring system, it shows that a few well-chosen rules can go a long way. The biggest insight was discovering how small weight decisions, like making genre worth 2x more than mood, can unintentionally limit what users discover. This made me think about how real platforms like Spotify might struggle with the same problem at a much larger scale, and why human oversight in AI systems still matters even when the algorithm seems to be working correctly.
