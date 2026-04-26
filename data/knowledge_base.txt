@@ -1,0 +1,38 @@
+GENRE: Pop
+Pop music is characterized by catchy melodies, simple chord progressions, and broad appeal. It often features themes of love, relationships, and personal expression. Artists like Taylor Swift, Dua Lipa, and The Weeknd dominate this genre. Pop songs typically have high energy, polished production, and memorable hooks.
+
+GENRE: Rock
+Rock music features electric guitars, strong rhythms, and powerful vocals. It ranges from classic rock to indie and alternative. Artists like Imagine Dragons, Arctic Monkeys, and Coldplay represent modern rock. Rock songs often carry themes of rebellion, emotion, and identity.
+
+GENRE: Hip-Hop
+Hip-Hop is built on beats, rhythm, and lyrical storytelling. It covers themes of culture, struggle, success, and self-expression. Artists like Kendrick Lamar, Drake, and J. Cole are prominent figures. Energy levels vary from laid-back lo-fi to high-energy trap.
+
+GENRE: Jazz
+Jazz is characterized by improvisation, complex harmonies, and swing rhythms. It creates a sophisticated, relaxed atmosphere. Artists like Miles Davis, John Coltrane, and Norah Jones represent this genre. Jazz is ideal for calm, focused, or late-night moods.
+
+GENRE: Electronic
+Electronic music uses synthesizers, drum machines, and digital production. It ranges from ambient and chill to high-energy dance music. Artists like Daft Punk, Calvin Harris, and Flume are key figures. It suits energetic, focused, or euphoric moods.
+
+GENRE: R&B
+R&B combines soulful vocals with rhythm and blues traditions. Themes include love, heartbreak, and empowerment. Artists like Frank Ocean, SZA, and Beyonce define modern R&B. It ranges from smooth and mellow to upbeat and danceable.
+
+GENRE: Classical
+Classical music features orchestral arrangements and complex compositions. It evokes calm, focus, and emotional depth. Composers like Beethoven, Mozart, and Chopin are foundational. Ideal for studying, relaxing, or deep thinking.
+
+MOOD: Happy
+Happy music is upbeat, bright, and energizing. It features major keys, fast tempos, and positive lyrics. Perfect for workouts, celebrations, or starting the day with energy.
+
+MOOD: Sad
+Sad music is slow, emotional, and introspective. It often features minor keys, soft instrumentation, and heartfelt lyrics. Good for processing emotions or quiet reflection.
+
+MOOD: Energetic
+Energetic music is fast-paced, intense, and motivating. It features strong beats, high tempo, and powerful production. Ideal for workouts, gaming, or staying focused.
+
+MOOD: Chill
+Chill music is relaxed, smooth, and easygoing. It features soft beats, mellow melodies, and a laid-back vibe. Perfect for studying, unwinding, or background listening.
+
+MOOD: Romantic
+Romantic music is warm, intimate, and emotional. It features smooth vocals, gentle melodies, and themes of love and connection. Ideal for date nights or sentimental moments.
+
+MOOD: Focused
+Focused music is steady, non-distracting, and consistent. It often features instrumental tracks, ambient sounds, or lo-fi beats. Perfect for studying or deep work sessions.
