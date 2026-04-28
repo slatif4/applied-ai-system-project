@@ -2,3 +2,4 @@ streamlit
 pytest
 anthropic
 requests
+tabulate

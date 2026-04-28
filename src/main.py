@@ -2,6 +2,7 @@
 Command line runner for the Music Recommender Simulation.
 """
 
+from pathlib import Path
 from src.recommender import load_songs, recommend_songs
 from tabulate import tabulate
 
@@ -20,11 +21,12 @@ def run_profile(songs, profile_name, user_prefs):
         table_data.append([rank, song['title'], song['artist'], score, explanation])
     
     headers = ["Rank", "Title", "Artist", "Score", "Reasons"]
-    print(tabulate(table_data, headers=headers, tablefmt="fancy_grid"))
+    print(tabulate(table_data, headers=headers, tablefmt="grid"))
 
 
 def main() -> None:
-    songs = load_songs("data/songs.csv")
+    data_file = Path(__file__).resolve().parents[1] / "data" / "songs.csv"
+    songs = load_songs(str(data_file))
 
     # Profile 1: High-Energy Pop
     run_profile(songs, "High-Energy Pop", {
