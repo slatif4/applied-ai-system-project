@@ -1,9 +1,9 @@
 # VibeFinder 2.0 — Applied AI Music Recommendation System
 
 ## Overview
-VibeFinder 2.0 is an evolution of the VibeFinder 1.0 music recommender (Module 3). It extends the original content-based filtering system into a full applied AI system that combines **RAG**, **agentic Wikipedia search**, and **AI-generated explanations** to recommend music based on mood, genre, and energy level.
+VibeFinder 2.0 is an evolution of TuneFinder 1.0 (Module 3 Music Recommender Simulation). It extends the original content-based filtering system into a full applied AI system that combines **RAG**, **agentic Wikipedia search**, and **AI-generated explanations** to recommend music based on mood, genre, and energy level.
 
-**Original project:** AI110 Module 3 — Music Recommender Simulation  
+**Original project:** AI110 Module 3 — TuneFinder 1.0 (Music Recommender Simulation)  
 **Original goals:** Content-based filtering using mood, genre, and energy scoring from a local CSV dataset.
 
 ---
