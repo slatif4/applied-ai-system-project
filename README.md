@@ -144,3 +144,13 @@ This project taught me how to wire together multiple AI components into a cohesi
 
 ## Architecture Diagram
 ![System Architecture](assets/architecture.png)
+
+---
+
+---
+
+## Portfolio Artifact
+
+**GitHub:** https://github.com/slatif4/applied-ai-system-project.git
+
+**Reflection:** This project shows that I can take a simple idea — recommending music — and evolve it into a full AI system with multiple integrated components. Building VibeFinder 2.0 taught me how to design modular pipelines, handle real-world API failures gracefully, and combine different AI techniques like RAG and agentic search into one cohesive product. As an AI engineer, I value systems that are reliable, explainable, and honest about their limitations.
