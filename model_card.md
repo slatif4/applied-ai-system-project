@@ -1,108 +1,85 @@
-# 🎧 Model Card: Music Recommender Simulation
+# Model Card: VibeFinder 2.0
 
-## 1. Model Name  
-
-**TuneFinder 1.0**
-
----
-
-## 2. Intended Use  
-
-Describe what your recommender is designed to do and who it is for. 
- 
-
-This system suggests up to 5 songs from a small catalog based on a user's preferred genre, mood, and energy level. It is designed for classroom exploration to demonstrate how content-based recommendation systems work. It is not intended for real-world use or production music platforms.
-
+## 1. Model Name
+**VibeFinder 2.0** — Applied AI Music Recommendation System
 
 ---
 
-## 3. How the Model Works  
-
-Explain your scoring approach in simple language.  
-
-
-**TuneFinder 1.0** compares each song in the catalog to a user's taste profile using a simple point-based scoring system. For every song, it checks three things:
-
-- If the song's genre matches the user's favorite genre, it earns 2 points
-- If the song's mood matches the user's favorite mood, it earns 1 point
-- The song earns up to 1 additional point based on how close its energy level is to the user's target energy
-
-Once every song has a score, the system sorts them from highest to lowest and returns the top results. Each recommendation includes an explanation of why it was suggested, such as "genre match (+2.0), energy similarity (0.95)."
-
+## 2. Intended Use
+VibeFinder 2.0 is designed to recommend music based on a user's mood, genre preference, and energy level. It combines content-based filtering with RAG retrieval, agentic Wikipedia search, and AI-generated explanations. It is built for the AI110 Final Project to demonstrate a full applied AI system pipeline.
 
 ---
 
-## 4. Data  
+## 3. How the Model Works
+VibeFinder 2.0 uses a four-stage pipeline:
 
-Describe the dataset the model uses.  
-
-
-- The catalog contains 20 songs stored in `data/songs.csv`
-- Genres represented: pop, lofi, rock, jazz, ambient, synthwave, indie pop, electronic
-- Moods represented: happy, chill, intense, relaxed, moody, focused
-- 10 songs were in the original starter file; 10 additional songs were added to improve diversity
-- The dataset reflects a bias toward Western popular music styles and does not include classical, country, hip-hop, or world music
+1. **Recommender** — scores songs from a local CSV using genre match (+2.0), mood match (+1.0), and energy similarity (0.0–1.0)
+2. **RAG Retriever** — searches a local knowledge base of genre and mood descriptions to retrieve relevant context
+3. **Wikipedia Agent** — autonomously searches Wikipedia for live context about the requested genre
+4. **LLM Explainer** — combines all context and generates a natural language explanation using Gemini 2.5 Flash, with a rule-based fallback if the API is unavailable
 
 ---
 
-## 5. Strengths  
-
-Where does your system seem to work well  
-
-
-- Works well for users with clear, common preferences like "chill lofi" or "high-energy pop"
-- Recommendations are fully explainable, every suggestion includes a reason
-- Simple and transparent scoring makes it easy to understand and debug
-- Fast performance even without any machine learning
+## 4. Data
+- Song catalog: 20 songs in `data/songs.csv`
+- Knowledge base: `data/knowledge_base.txt` containing genre and mood descriptions
+- External data: Wikipedia API (live, no authentication required)
+- Genres: pop, rock, hip-hop, jazz, electronic, r&b, classical
+- Moods: happy, sad, energetic, chill, romantic, focused
 
 ---
 
-## 6. Limitations and Bias 
-
-Where the system struggles or behaves unfairly. 
- 
-
-- Genre match is worth twice as much as mood match, which can create a "filter bubble" where users only see one genre
-- The catalog is very small (20 songs), so niche genres like ambient or electronic have very few options
-- Energy similarity can reward songs that are close in energy even if they feel completely different
-- The system does not consider tempo, valence, danceability, or acousticness in scoring
-- Users with conflicting preferences (e.g., high energy but chill mood) may get unexpected results
-- The dataset does not represent many global music styles, making it biased toward certain listener types
+## 5. Strengths
+- Fully explainable — every recommendation includes a reason
+- Works without any API key thanks to Wikipedia and rule-based fallback
+- Modular design makes each component independently testable
+- Graceful error handling — app never crashes due to API failures
+- 5/5 eval tests passed with 1.0 average confidence score
 
 ---
 
-## 7. Evaluation  
-
-How you checked whether the recommender behaved as expected. 
-
-
-Three user profiles were tested:
-
-- **High-Energy Pop** (genre: pop, mood: happy, energy: 0.9) — Results matched expectations well. Pop Confetti and Sunrise City ranked at the top with both genre and mood matches.
-- **Chill Lofi** (genre: lofi, mood: chill, energy: 0.35) — Strongest performance. Library Rain scored a perfect 4.0, and all top 3 results were lofi/chill songs.
-- **Deep Intense Rock** (genre: rock, mood: intense, energy: 0.95) — Worked well for the two rock songs available. Iron Riff scored a perfect 4.0, and Storm Runner followed closely behind.
-
-A weight shift experiment was also considered: doubling the energy weight and halving the genre weight would likely surface more cross-genre results based on vibe rather than category.
+## 6. Limitations and Bias
+- Song catalog is small (20 songs), limiting diversity in results
+- Genre match is weighted 2x more than mood, which can create filter bubbles
+- Wikipedia summaries can be generic and may not always match the user's specific vibe
+- Gemini explanations depend on quota availability — free tier has daily limits
+- The knowledge base only covers 7 genres and 6 moods — requests outside these may get weaker results
+- Dataset reflects Western popular music and does not represent global music styles
 
 ---
 
-## 8. Future Work  
+## 7. Evaluation
+Ran 5 predefined test cases using `eval.py`:
 
-Ideas for how you would improve the model next.  
+- **Happy Pop** — PASS (confidence: 1.0) — correct songs, strong explanation
+- **Chill Jazz** — PASS (confidence: 1.0) — relaxed songs retrieved, Wikipedia context accurate
+- **Energetic Rock** — PASS (confidence: 1.0) — high-energy songs ranked correctly
+- **Sad R&B** — PASS (confidence: 1.0) — emotional songs matched mood well
+- **Focused Classical** — PASS (confidence: 1.0) — steady, calm songs returned as expected
 
-
-- Add support for more features in scoring, such as tempo range preferences and valence
-- Expand the catalog to hundreds of songs across more genres and cultures
-- Implement collaborative filtering to learn from multiple users' listening history
-- Add diversity balancing so the top results include songs from different genres
-- Build a Streamlit UI so users can interactively adjust their taste profile and see results change in real time
-
+All 5 tests passed. The system struggled slightly with genres not well represented in the CSV (like lofi or ambient) returning general matches instead of specific ones.
 
 ---
 
-## 9. Personal Reflection  
+## 8. Reflection and Ethics
 
-A few sentences about your experience.  
+**What are the limitations or biases in your system?**
+The genre weight dominates scoring, which can create a filter bubble where users only see one genre. The small dataset also limits diversity — users with niche tastes get fewer relevant results.
 
+**Could your AI be misused, and how would you prevent that?**
+The system could be used to promote certain songs or artists unfairly by manipulating the dataset. Preventing this would require dataset auditing and transparency about how songs are scored.
 
-Building TuneFinder taught me how recommendation systems transform raw data into personalized suggestions through simple math. I was surprised by how reasonable the results felt even with such a basic scoring system, it shows that a few well-chosen rules can go a long way. The biggest insight was discovering how small weight decisions, like making genre worth 2x more than mood, can unintentionally limit what users discover. This made me think about how real platforms like Spotify might struggle with the same problem at a much larger scale, and why human oversight in AI systems still matters even when the algorithm seems to be working correctly.
+**What surprised you while testing your AI's reliability?**
+I was surprised that all 5 eval tests passed with perfect confidence scores. I expected at least one failure due to API quota issues, but the fallback system handled everything gracefully.
+
+**Describe your collaboration with AI during this project.**
+Claude helped me design the pipeline architecture and write the RAG, agent, and explainer modules. One helpful suggestion was building a rule-based fallback for the explainer, this made the system much more reliable. One flawed suggestion was using `gemini-2.0-flash` which turned out to be deprecated, had to switch to `gemini-2.5-flash` after getting errors.
+
+---
+
+## 9. Future Work
+- Expand the song catalog to hundreds of songs across more genres
+- Replace keyword RAG with embedding-based semantic search for better retrieval
+- Add a real web search agent using Tavily or SerpAPI for richer song discovery
+- Implement user feedback loop so the system learns from ratings over time
+- Add collaborative filtering to complement content-based recommendations
