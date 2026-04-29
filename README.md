@@ -138,14 +138,16 @@ This project taught me how to wire together multiple AI components into a cohesi
 ---
 
 ## Demo Walkthrough
-*(Loom video link will be added here)*
+Zoom Video Link:
+
+https://drive.google.com/file/d/1D7whNNYwDQKCL5EsnKhNbPZVsjlfAEQk/view?usp=sharing
+
+
 
 ---
 
 ## Architecture Diagram
 ![System Architecture](assets/architecture.png)
-
----
 
 ---
 
