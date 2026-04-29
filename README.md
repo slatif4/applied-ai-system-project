@@ -127,6 +127,18 @@ This project taught me how to wire together multiple AI components into a cohesi
 
 ---
 
+---
+
+## Stretch Features Completed
+
+| Feature | What Was Built | 
+
+| RAG Enhancement | Built a custom `knowledge_base.txt` with genre and mood descriptions. RAG retrieval enriches the explainer prompt with relevant context, measurably improving explanation quality. 
+| Agentic Workflow Enhancement | Wikipedia agent autonomously searches for live genre context based on user input. Each step is logged in the terminal showing the full decision chain. 
+| Test Harness / Evaluation Script | `eval.py` runs 5 predefined test cases end-to-end and prints pass/fail scores and confidence ratings. 5/5 passed with average confidence of 1.0. 
+
+---
+
 ## Demo Walkthrough
 *(Loom video link will be added here)*
 
