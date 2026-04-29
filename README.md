@@ -127,10 +127,6 @@ This project taught me how to wire together multiple AI components into a cohesi
 
 ---
 
----
-
----
-
 ## Stretch Features Completed
 
 | Feature | What Was Built |
